@@ -7,6 +7,7 @@ from getkey import getkey, keys
 from tabulate import tabulate
 import time
 
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -29,6 +30,7 @@ def start_menu():
     welcome_message = pyfiglet.figlet_format("Welcome")
     print(welcome_message)
     print("")
+    time.sleep(2)
     print(
         "Greetings and welcome to Gaming Hangman!\n",
         "Various titles of PC games will be randomly selected,\n",
@@ -36,14 +38,19 @@ def start_menu():
         "In order to survive, you have five attempts.\n",
         "Wishing you the best!\n"
     )
+    time.sleep(4)
     print("Press s for start")
     print("Press h for highscore")
     key = getkey()
     while True:
-        if key == keys.s:
-            start_game()
-        elif key == keys.h:
+        if key == keys.H:
             highscore_top_5()
+            break
+
+        elif key == keys.S:
+            start_game()
+            break
+
         else:
             start_game()
 
@@ -61,11 +68,8 @@ def highscore_top_5():
     print(tabulate(highscore_list, headers=col_names, tablefmt="fancy_grid"))
 
 
-
-
-
-
 def start_game():
     start_menu()
+    
 
 start_game()
