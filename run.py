@@ -40,7 +40,7 @@ def start_menu():
     )
     time.sleep(4)
     print("Press s for start")
-    print("Press h for highscore")
+    print("Press h for highscore\n")
     key = getkey()
     while True:
         if key == keys.H:
@@ -48,11 +48,11 @@ def start_menu():
             break
 
         elif key == keys.S:
-            start_game()
+            run_game()
             break
 
         else:
-            start_game()
+            run_game()
 
 
 def highscore_top_5():
@@ -67,9 +67,23 @@ def highscore_top_5():
     #display table
     print(tabulate(highscore_list, headers=col_names, tablefmt="fancy_grid"))
 
+def run_game():
+    """
+    Run game
+    """
+    name = input("Write your name and press ENTER to start:\n").capitalize()
+    if name.isalpha() == True:
+        print(f"Hey, {name}!")
+        time.sleep(1)
+        print("Lets go!")
+
+    else: 
+        print("Please enter your name using letter only")
+
 
 def start_game():
     start_menu()
+    run_game()
     
 
 start_game()
