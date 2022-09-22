@@ -1,10 +1,8 @@
 import gspread
 from google.oauth2.service_account import Credentials
-import random
+import random #import random module
 from words import words
-
-print(words)
-
+import pyfiglet
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -22,4 +20,10 @@ highscore = SHEET.worksheet('highscore')
 
 data = highscore.get_all_values()
 
-print(data)
+
+
+welcome_message = pyfiglet.figlet_format("Welcome")
+print(welcome_message)
+
+input("Do you want to play? [Y/N]\n")
+input("Whats your name?\n")
