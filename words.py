@@ -1,3 +1,3 @@
-words = ["half-life", "doom", "quake", "counter-strike", "grand theft auto",
-"diablo", "minecraft", "fortnite", "world of warcraft", "warcraft", "call of duty",
-"battlefield", "age of empires", "overwatch", "new world", "roblox", "escape from tarkov"]
+words = ["halflife", "doom", "quake", "counterstrike", "grandtheftauto",
+"diablo", "minecraft", "fortnite", "worldofwarcraft", "warcraft", "callofduty",
+"battlefield", "ageofempires", "overwatch", "newworld", "roblox", "escapefromtarkov"]
