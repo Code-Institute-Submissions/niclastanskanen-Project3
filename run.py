@@ -81,17 +81,70 @@ def user_input():
         print("Tip: There are some games that use compound words")
         time.sleep(1)
         print("Lets go!")
+        time.sleep(1)
+        print("Loading...")
+        time.sleep(4)
+        game_run()
 
     else: 
         print("Please enter your name using letter only")
 
 def get_word(words):
+    """
+    Choosing random words from words.py and return with uppercase
+    """
     word = random.choice(words)
 
-    return word
+    return word.upper()
 
 
+def game_run():
+    """
+    Starts the game, the computer takes a random word. 
+    Input is locked to letters only. 
+    The player gets a predetermined number of tries (lives). 
+    The letters guessed are printed. 
+    If you guess wrong, you lose an attempt (life) If you guess 
+    correctly or the life runs out, you are sent on to highscore_top_5.
+    """
+    word = get_word(words)
+    word_letters = set(word)
+    alphabet = set(string.ascii_uppercase)
+    used_letters = set()
 
+    lives = 6
+
+    while len(word_letters) > 0 and lives > 0:
+
+        print("You have", lives, "lives left and you have used these letters: ", " ".join(used_letters))
+
+        word_list = [letter if letter in used_letters else '-' for letter in word]
+        print("Current word: ", " ".join(word_list))
+
+        user_letter = input("Guess a letter: ").upper()
+        if user_letter in alphabet - used_letters:
+            used_letters.add(user_letter)
+            if user_letter in word_letters:
+                word_letters.remove(user_letter)
+
+            else:
+                lives = lives - 1
+                print("Letter is not in the word.")
+
+        elif user_letter in used_letters:
+            print("You have already used that character. Please try again")
+
+        else:
+            print("Invalid character. Please try again")
+
+    if lives == 0:
+        print("You died, the word was:\n", word)
+        time.sleep(2)
+        highscore_top_5()
+    else:
+        print("congratulations, you guessed the correct word\n", word)
+        time.sleep(2)
+        highscore_top_5()
 
 
 def play_again():
@@ -109,6 +162,8 @@ def start_game():
     start_menu()
     user_input()
     play_again()
+    word_letters()
+    game_run()
 
 
 start_game()
