@@ -125,8 +125,8 @@ def game_run():
     lives = 6
     while len(word_letters) > 0 and lives > 0:
 
-        print("Attempts:", ATTEMPTS, "\n", "You have", lives, "lives left and you have used these letters: ", " ".join(used_letters))
-
+        print("Attempts:", ATTEMPTS, "\n")
+        print("You have", lives, "lives left and you have used these letters: ", " ".join(used_letters))
         word_list = [letter if letter in used_letters else '-' for letter in word]
         print("Current word: ", " ".join(word_list))
 
@@ -139,21 +139,24 @@ def game_run():
 
             else:
                 lives = lives - 1
-                print("Letter is not in the word.")
+                print("Letter is not in the word.\n")
 
         elif user_letter in used_letters:
-            print("You have already used that character. Please try again")
+            print("You have already used that character. Please try again\n")
 
         else:
-            print("Invalid character. Please try again")
+            print("Invalid character. Please try again\n")
 
     if lives == 0:
+        ATTEMPTS = ATTEMPTS + 10
         print("You died, the word was:\n", word)
-        time.sleep(2)
+        print("Loading highscore...")
+        time.sleep(7)
         highscore_top_5()
     else:
         print("congratulations, you guessed the correct word\n", word)
-        time.sleep(2)
+        print("Loading highscore...")
+        time.sleep(7)
         highscore_top_5()
 
 
