@@ -21,7 +21,6 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_highscore').worksheet('highscore')
 
 
-
 def start_menu():
     """
     Start menu with figlet welcome script from
@@ -57,6 +56,7 @@ def start_menu():
             user_input()
             break
 
+
 def highscore_top_5():
     """
     Show top 5 highscore, lower attempts higher up on the list.
@@ -86,8 +86,9 @@ def user_input():
         time.sleep(4)
         game_run()
 
-    else: 
+    else:
         print("Please enter your name using letter only")
+
 
 def get_word(words):
     """
@@ -100,11 +101,12 @@ def get_word(words):
 
 def game_run():
     """
-    Starts the game, the computer takes a random word. 
-    Input is locked to letters only. 
-    The player gets a predetermined number of tries (lives). 
-    The letters guessed are printed. 
-    If you guess wrong, you lose an attempt (life) If you guess 
+    Starts the game, the computer takes a random word.
+    Input is locked to letters only.
+    The player gets a predetermined number of tries (lives) and
+    attempts.
+    The letters guessed are printed + attempts and lives calculates
+    If you guess wrong, you lose an attempt (life) If you guess
     correctly or the life runs out, you are sent on to highscore_top_5.
     """
     word = get_word(words)
@@ -114,6 +116,7 @@ def game_run():
 
     lives = 6
     attempts = 0
+    
 
     while len(word_letters) > 0 and lives > 0:
 
@@ -122,7 +125,7 @@ def game_run():
         word_list = [letter if letter in used_letters else '-' for letter in word]
         print("Current word: ", " ".join(word_list))
 
-        user_letter = input("Guess a letter: ").upper()
+        user_letter = input("Guess a letter: \n").upper()
         attempts = attempts + 1
         if user_letter in alphabet - used_letters:
             used_letters.add(user_letter)
@@ -149,6 +152,10 @@ def game_run():
         highscore_top_5()
 
 
+def update_highscore():
+    SHEET.insert_row(values)
+
+
 def play_again():
     """
     Function ask user if they want to play again.
@@ -172,4 +179,3 @@ def start_game():
 
 
 start_game()
-
