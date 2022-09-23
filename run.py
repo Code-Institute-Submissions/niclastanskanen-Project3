@@ -6,6 +6,7 @@ import pyfiglet
 from getkey import getkey, keys
 from tabulate import tabulate
 import time
+import string
 
 
 SCOPE = [
@@ -84,6 +85,15 @@ def user_input():
     else: 
         print("Please enter your name using letter only")
 
+def get_word(words):
+    word = random.choice(words)
+
+    return word
+
+
+
+
+
 def play_again():
     """
     Function ask user if they want to play again.
@@ -99,6 +109,7 @@ def start_game():
     start_menu()
     user_input()
     play_again()
+
 
 start_game()
 
