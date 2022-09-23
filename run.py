@@ -20,6 +20,10 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_highscore').worksheet('highscore')
 
+# global variables
+ATTEMPTS = 0
+USER_NAME = ""
+
 
 def start_menu():
     """
@@ -74,9 +78,10 @@ def user_input():
     User write their game name and the game only accepts alphabets.
     If it's not only alphabets, re-enter their name
     """
-    name = input("Write your name and press ENTER to start:\n").capitalize()
-    if name.isalpha() is True:
-        print(f"Hey, {name}!")
+    global USER_NAME
+    USER_NAME = input("Write your name and press ENTER to start:\n").capitalize()
+    if USER_NAME.isalpha() is True:
+        print(f"Hey, {USER_NAME}!")
         time.sleep(1)
         print("Tip: There are some games that use compound words")
         time.sleep(1)
@@ -84,10 +89,12 @@ def user_input():
         time.sleep(1)
         print("Loading...")
         time.sleep(4)
-        game_run()
 
     else:
         print("Please enter your name using letter only")
+
+        
+        return USER_NAME
 
 
 def get_word(words):
@@ -109,24 +116,22 @@ def game_run():
     If you guess wrong, you lose an attempt (life) If you guess
     correctly or the life runs out, you are sent on to highscore_top_5.
     """
+    global ATTEMPTS
     word = get_word(words)
     word_letters = set(word)
     alphabet = set(string.ascii_uppercase)
     used_letters = set()
 
     lives = 6
-    attempts = 0
-    
-
     while len(word_letters) > 0 and lives > 0:
 
-        print("Attempts:", attempts, "\n", "You have", lives, "lives left and you have used these letters: ", " ".join(used_letters))
+        print("Attempts:", ATTEMPTS, "\n", "You have", lives, "lives left and you have used these letters: ", " ".join(used_letters))
 
         word_list = [letter if letter in used_letters else '-' for letter in word]
         print("Current word: ", " ".join(word_list))
 
         user_letter = input("Guess a letter: \n").upper()
-        attempts = attempts + 1
+        ATTEMPTS = ATTEMPTS + 1
         if user_letter in alphabet - used_letters:
             used_letters.add(user_letter)
             if user_letter in word_letters:
@@ -152,13 +157,18 @@ def game_run():
         highscore_top_5()
 
 
-def update_highscore():
-    SHEET.insert_row(values)
+def score_update():
+    """
+    Update and add Username and attempts to google sheets
+    """
+    global USER_NAME
+    global ATTEMPTS
+    SHEET.insert_row([USER_NAME, ATTEMPTS], index=2)
 
 
 def play_again():
     """
-    Function ask user if they want to play again.
+    Ask user if they want to play again.
     """
     response = input("Would you like to play again? Enter 'Y' for Yes or 'N' for No.\n").lower()
     if response == "y":
@@ -169,13 +179,21 @@ def play_again():
 
 def start_game():
     """
-    Run all program functions
+    Run program functions
     """
     start_menu()
     user_input()
-    play_again()
-    word_letters()
+    main()
+
+
+def main():
+    """
+    Run game functions
+    """
+    get_word(words)
     game_run()
+    score_update()
+    play_again()
 
 
 start_game()
