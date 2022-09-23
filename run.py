@@ -113,15 +113,17 @@ def game_run():
     used_letters = set()
 
     lives = 6
+    attempts = 0
 
     while len(word_letters) > 0 and lives > 0:
 
-        print("You have", lives, "lives left and you have used these letters: ", " ".join(used_letters))
+        print("Attempts:", attempts, "\n", "You have", lives, "lives left and you have used these letters: ", " ".join(used_letters))
 
         word_list = [letter if letter in used_letters else '-' for letter in word]
         print("Current word: ", " ".join(word_list))
 
         user_letter = input("Guess a letter: ").upper()
+        attempts = attempts + 1
         if user_letter in alphabet - used_letters:
             used_letters.add(user_letter)
             if user_letter in word_letters:
@@ -159,6 +161,9 @@ def play_again():
 
 
 def start_game():
+    """
+    Run all program functions
+    """
     start_menu()
     user_input()
     play_again()
