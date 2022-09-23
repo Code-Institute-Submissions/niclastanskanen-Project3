@@ -25,6 +25,7 @@ ATTEMPTS = 0
 USER_NAME = ""
 LIVES = 6
 
+
 def start_menu():
     """
     Start menu with figlet welcome script from
@@ -111,8 +112,8 @@ def game_run():
     The player gets a predetermined number of tries (lives) and
     attempts.
     The letters guessed are printed + attempts and lives calculates
-    If you guess wrong, you lose an attempt (life) If you guess
-    correctly or the life runs out, you are sent on to highscore_top_5.
+    If you guess wrong, you lose an life and +1 on attempts.
+    If you die, +10 attempts
     """
     global ATTEMPTS
     global LIVES
@@ -153,7 +154,7 @@ def game_run():
 
     else:
         print("congratulations, you guessed the correct word\n", word)
-        
+
 
 def score_update():
     """
@@ -189,7 +190,7 @@ def play_again():
     response = input(
         "Would you like to play again? Enter 'Y' for Yes or 'N' for No.\n").lower()
     if response == "y":
-        game_run()
+        main()
     else:
         print("Hope you had fun playing the game. See you next time =)")
 
