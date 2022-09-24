@@ -84,7 +84,8 @@ def user_input():
     if len(USER_NAME) == 0:
         while len(USER_NAME) == 0:
             print("Error...")
-            USER_NAME = input("Please write your name and press ENTER:\n").capitalize()
+            USER_NAME = input(
+                "Please write your name and press ENTER:\n").capitalize()
     print(f"Hey, {USER_NAME}!")
     time.sleep(1)
     print("Tip: There are some games that use compound words")
