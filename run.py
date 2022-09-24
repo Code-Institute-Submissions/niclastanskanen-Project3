@@ -41,24 +41,19 @@ def start_menu():
         "Greetings and welcome to Gaming Hangman!\n",
         "Various titles of PC games will be randomly selected,\n",
         "and you have to guess them correctly before your lives run out.\n",
-        "In order to survive, you have five attempts.\n",
+        "In order to survive, you have six attempts.\n",
         "Wishing you the best!\n"
     )
     time.sleep(4)
-    print("Press s for start")
+    print("Press any key for start")
     print("Press h for highscore\n")
     key = getkey()
     while True:
         if key == keys.H:
             highscore_top_5()
             break
-
-        elif key == keys.S:
-            user_input()
-            break
-
         else:
-            user_input()
+            pass  #saftey net for while loop
             break
 
 
@@ -83,7 +78,7 @@ def user_input():
     USER_NAME = input(
         "Write your name and press ENTER to start:\n").capitalize()
     if USER_NAME.isalpha() is True:
-        print(f"Hey, {USER_NAME}!")
+        print("Hey,", USER_NAME)
         time.sleep(1)
         print("Tip: There are some games that use compound words")
         time.sleep(1)
