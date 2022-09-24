@@ -42,6 +42,7 @@ def start_menu():
           "and you have to guess them correctly before your "
           "lives run out.\n\n",
           "In order to survive, you have six attempts.\n\n",
+          "You got plus ten extra attempts if you die...\n\n",
           "Wishing you the best!\n"
           )
     time.sleep(4)
