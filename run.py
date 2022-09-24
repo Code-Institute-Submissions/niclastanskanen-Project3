@@ -162,7 +162,7 @@ def score_update():
     """
     Update and add Username and attempts to google sheets
     Printing user attempts and 5 sec delays for
-    google sheet to update so a new highscore will show up
+    google sheet to update so the new highscore will show up
     """
     global USER_NAME
     global ATTEMPTS
