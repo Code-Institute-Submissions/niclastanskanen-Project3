@@ -75,25 +75,25 @@ def highscore_top_5():
 
 def user_input():
     """
-    User write their game name and the game only accepts alphabets.
-    If it's not only alphabets, re-enter their name
+    User write their game name.
+    Is username is empty, error code and try again.
     """
     global USER_NAME
     USER_NAME = input(
         "Write your name and press ENTER to start:\n").capitalize()
-    while True:
-        if len(USER_NAME) == 0:
-            print("Please enter your name")
-            break
-        print(f"Hey, {USER_NAME}!")
-        time.sleep(1)
-        print("Tip: There are some games that use compound words")
-        time.sleep(1)
-        print("Lets go!")
-        time.sleep(1)
-        print("Loading...")
-        time.sleep(4)
-        return USER_NAME
+    if len(USER_NAME) == 0:
+        while len(USER_NAME) == 0:
+            print("Error...")
+            USER_NAME = input("Please write your name and press ENTER:\n").capitalize()
+    print(f"Hey, {USER_NAME}!")
+    time.sleep(1)
+    print("Tip: There are some games that use compound words")
+    time.sleep(1)
+    print("Lets go!")
+    time.sleep(1)
+    print("Loading...")
+    time.sleep(4)
+    return USER_NAME
 
 
 def get_word(words):
