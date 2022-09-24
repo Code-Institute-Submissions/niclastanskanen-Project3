@@ -44,15 +44,18 @@ def start_menu():
           "Wishing you the best!\n"
           )
     time.sleep(4)
-    print("Press any key for start")
+    print("Press s for start")
     print("Press h for highscore\n")
     key = getkey()
     while True:
         if key == keys.H:
             highscore_top_5()
             break
+        elif key == keys.S:
+            break
         else:
-            pass  # saftey net for while loop
+            print("Loading...")
+            time.sleep(1)
             break
 
 
@@ -76,8 +79,11 @@ def user_input():
     global USER_NAME
     USER_NAME = input(
         "Write your name and press ENTER to start:\n").capitalize()
-    if USER_NAME.isalpha() is True:
-        print("Hey,", USER_NAME)
+    while True:
+        if len(USER_NAME) == 0:
+            print("Please enter your name")
+            break
+        print(f"Hey, {USER_NAME}!")
         time.sleep(1)
         print("Tip: There are some games that use compound words")
         time.sleep(1)
@@ -85,8 +91,6 @@ def user_input():
         time.sleep(1)
         print("Loading...")
         time.sleep(4)
-    else:
-        print("Please enter your name using letter only")
         return USER_NAME
 
 
@@ -187,7 +191,7 @@ def play_again():
         main()
     else:
         print("Hope you had fun playing the game. See you next time =)")
-        exit()
+        sys.exit(0)
 
 
 def start_game():
