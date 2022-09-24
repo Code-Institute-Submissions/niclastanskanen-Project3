@@ -81,13 +81,13 @@ After the highscore has been updated and displayed, the player has the option to
 <img src="assets/images/end_game.png" alt="Picture of ending game" width="500">
 
 ---
-### other
-Global variables where used in this game to make it easy to store and return the variables in different parts of the game. 
+### Other
+Global variables.
 
 3 variables: 
 - ATTEMPTS - to store attempts 
 - USER_NAME - to store the chosen nickname in 
-- LIVES = 6
+- LIVES - store lives
 
 ---
 ### Highscore Google Sheet
@@ -120,8 +120,7 @@ Highscore is automatically sent from the game via API and also sends the data ba
 <img src="assets/images/pep8_checker.png" alt="Picture of pep8 validator results" width="400">
 
 ### Fixed bugs 
-- The start menu and restart option was not limited. When nothing or another key was clicked the program went to the following line.
-- In the restart function did the get key not always repond when deloyed in Heroku. To solve this it was changed to a input function.  
+- Bug with highscore. You didn't have to enter a name to be able to play. Made the highscore not correct. It turned out to be a missing statement in user_input while loop. Fixed.
 
 ### Unfixed bugs
 N/A
