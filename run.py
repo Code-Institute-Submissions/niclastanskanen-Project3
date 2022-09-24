@@ -196,7 +196,7 @@ def play_again():
         main()
     else:
         print("Hope you had fun playing the game. See you next time =)")
-        sys.exit(0)
+        os.sys.exit()
 
 
 def start_game():
