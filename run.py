@@ -7,7 +7,7 @@ from getkey import getkey, keys
 from tabulate import tabulate
 import time
 import string
-
+import os
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -37,13 +37,12 @@ def start_menu():
     print(welcome_message)
     print("")
     time.sleep(2)
-    print(
-        "Greetings and welcome to Gaming Hangman!\n",
-        "Various titles of PC games will be randomly selected,\n",
-        "and you have to guess them correctly before your lives run out.\n",
-        "In order to survive, you have six attempts.\n",
-        "Wishing you the best!\n"
-    )
+    print("Greetings and welcome to Gaming Hangman!\n\n",
+          "Various titles of PC games will be randomly selected,\n",
+          "and you have to guess them correctly before your lives run out.\n\n",
+          "In order to survive, you have six attempts.\n\n",
+          "Wishing you the best!\n"
+          )
     time.sleep(4)
     print("Press any key for start")
     print("Press h for highscore\n")
@@ -53,7 +52,7 @@ def start_menu():
             highscore_top_5()
             break
         else:
-            pass  #saftey net for while loop
+            pass  # saftey net for while loop
             break
 
 
@@ -188,6 +187,7 @@ def play_again():
         main()
     else:
         print("Hope you had fun playing the game. See you next time =)")
+        exit()
 
 
 def start_game():
