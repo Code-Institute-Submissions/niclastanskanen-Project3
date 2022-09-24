@@ -39,7 +39,8 @@ def start_menu():
     time.sleep(2)
     print("Greetings and welcome to Gaming Hangman!\n\n",
           "Various titles of PC games will be randomly selected,\n",
-          "and you have to guess them correctly before your lives run out.\n\n",
+          "and you have to guess them correctly before your "
+          "lives run out.\n\n",
           "In order to survive, you have six attempts.\n\n",
           "Wishing you the best!\n"
           )
@@ -123,7 +124,8 @@ def game_run():
     while len(word_letters) > 0 and LIVES > 0:
 
         print("Attempts:", ATTEMPTS, "\n")
-        print("You have", LIVES, "lives left and you have used these letters: ",
+        print("You have", LIVES,
+              "lives left and you have used these letters: ",
               " ".join(used_letters))
         word_list = [
             letter if letter in used_letters else '-' for letter in word]
@@ -186,7 +188,8 @@ def play_again():
     """
     reset_attempts_lives()
     response = input(
-        "Would you like to play again? Enter 'Y' for Yes or 'N' for No.\n").lower()
+        "Would you like to play again? Enter 'Y' for Yes"
+        " or 'N' for No.\n").lower()
     if response == "y":
         main()
     else:
